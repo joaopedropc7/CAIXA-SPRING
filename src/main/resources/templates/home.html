@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+           body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            margin: 0;
+        }
+
+        .menu {
+            background-color: transparent;
+            color: #333;
+            padding: 10px;
+        }
+
+        .menu ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .menu li {
+            margin: 10px 0;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            display: block;
+            transition: color 0.3s;
+        }
+
+        .menu a:hover {
+            color: #007bff;
+        }
+
+        .menu ul ul {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sistema de Caixa</h1>
+    <nav class="menu">
+        <ul>
+            <li> <p>Saldo</p>
+                <ul>
+                    <a href="/home/saldoview">Ver saldo</a>
+                </ul>
+            </li>
+            <li>Contas
+                <ul>
+                    <li><a href="/contas/cadastro">Cadastrar Contas</a></li>
+                    <li><a href="/contas">Listar Contas</a></li>
+                </ul>
+            </li>
+            <li>Grupos
+                <ul>
+                    <li><a href="/grupo/cadastro">Cadastrar Grupos</a></li>
+                    <li><a href="/grupo">Listar Grupos</a></li>
+                </ul>
+            </li>
+            <li>Movimentações
+                <ul>
+                    <li><a href="/movimentacao/cadastro">Realizar Movimentação</a></li>
+                </ul>
+            </li>
+            <li>Relatórios
+                <ul>
+                    <li>Relatório por Tipo de Receita
+                    <a href="/relatorio/receitas">Receitas</a>
+                    <a href="/relatorio/despesas">Despesas</a>
+                    </li>
+                    <li><a href="/relatorio/contas">Relatório por Contas</a></li>
+                    <li><a href="/relatorio/data">Relatório por Período</a></li>
+                    <li><a href="/relatorio/formgrupo">Relatório por Grupo</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</body>
+</html>

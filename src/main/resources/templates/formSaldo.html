@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ver saldo</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .container {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    select, button {
+        padding: 10px;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+     .home-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .home-button a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .home-button a:hover {
+            background-color: #0056b3;
+        }
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="home-button">
+        <a href="/home">Home</a>
+    </div>
+    <h2>Selecione a conta</h2>
+    <form th:action="@{/home/contasaldo}" th:object="${conta}" method="post">
+        <label for="idConta">Escolha uma opção:</label>
+        <select id="idConta" name="idConta">
+            <option th:each="conta : ${contas}" value="idConta" th:value="${conta.id}" th:text="${conta.nomeConta}"></option>
+        </select>
+
+        <button type="submit">Enviar</button>
+    </form>
+</div>
+</body>
+</html>

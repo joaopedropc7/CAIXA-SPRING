@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+         .home-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .home-button a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .home-button a:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Relatório de Movimentações</h1>
+    <div class="container">
+        <div class="home-button">
+            <a href="/home">Home</a>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome da Conta</th>
+                    <th>Data</th>
+                    <th>Histórico</th>
+                    <th>Valor de Entrada</th>
+                    <th>Valor de Saída</th>
+                    <th>Saldo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="relatorio : ${relatorios.relatorios}">
+                    <td th:text="${relatorio.conta.nomeConta}"></td>
+                    <td th:text="${#temporals.format(relatorio.data, 'dd-MM-yyyy')}"></td>
+                    <td th:text="${relatorio.historico}"></td>
+                    <td th:text="${relatorio.valorEntrada}"></td>
+                    <td th:text="${relatorio.valorSaida}"></td>
+                    <td th:text="${relatorio.saldo}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

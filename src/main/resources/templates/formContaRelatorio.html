@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatorio Contas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+         .home-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .home-button a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .home-button a:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .form-submit {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .form-submit button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-submit button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Listagem de Contas</h1>
+    <div class="container">
+        <div class="home-button">
+            <a href="/home">Home</a>
+        </div>
+        <form action="/" th:action="@{/relatorio/conta/ids}" method="POST">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Selecionar</th>
+                        <th>Nome da Conta</th>
+                        <th>Grupo</th>
+                        <th>Tipo de Receita</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="conta : ${contas}">
+                        <td><input type="checkbox" name="contaSelecionada" value="1" th:value="${conta.id}"></td>
+                        <td th:text="${conta.nomeConta}"></td>
+                        <td th:text="${conta.grupo.name}">Grupo A</td>
+                        <td th:text="${conta.tipoConta}">Tipo A</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="form-submit">
+                <button type="submit">Enviar</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

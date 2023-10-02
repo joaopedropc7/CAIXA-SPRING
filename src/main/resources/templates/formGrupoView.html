@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Relatório por Grupo</title>
+    <style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    text-align: center;
+    }
+
+    h1 {
+    color: #333;
+    }
+
+    form {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    width: 300px;
+    margin: 0 auto;
+    }
+
+    label {
+    display: block;
+    margin-bottom: 10px;
+    }
+
+    select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    }
+
+    input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    }
+
+    input[type="submit"]:hover {
+    background-color: #0056b3;
+    }
+
+     .home-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .home-button a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .home-button a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="home-button">
+    <a href="/home">Home</a>
+</div>
+<h1>Relatório por Grupo</h1>
+
+<form action="/" th:action="@{/relatorio/grupo}" th:object="${grupo}" method="post">
+    <label for="idGrupo">Selecione um Grupo:</label>
+    <select id="idGrupo" name="idGrupo" required>
+        <option value="idGrupo" th:each="grupo : ${grupos}" th:value="${grupo.id}" th:text="${grupo.name}"></option>
+    </select>
+
+    <br>
+
+    <input type="submit" value="Gerar Relatório">
+</form>
+</body>
+</html>

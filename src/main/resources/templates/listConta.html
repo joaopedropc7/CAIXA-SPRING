@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .home-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .home-button a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .home-button a:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+        .button-container {
+    display: inline-block;
+    white-space: nowrap; /* Impede a quebra de linha */
+}
+
+/* Estilize os botões "Alterar" */
+.btn-alterar {
+    background-color: #007bff; /* Cor de fundo azul */
+    color: #fff; /* Cor do texto branco */
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-right: 10px; /* Espaçamento entre os botões */
+}
+
+.btn-alterar:hover {
+    background-color: #0056b3; /* Cor de fundo azul mais escura quando hover */
+}
+
+/* Estilize os botões "Excluir" */
+.btn-excluir {
+    background-color: #dc3545; /* Cor de fundo vermelha */
+    color: #fff; /* Cor do texto branco */
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.btn-excluir:hover {
+    background-color: #c82333; /* Cor de fundo vermelha mais escura quando hover */
+}
+    </style>
+</head>
+<body>
+    <h1>Listagem de Contas</h1>
+    <div class="container">
+        <div class="container">
+            <div class="home-button">
+                <a href="/home">Home</a>
+            </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome da Conta</th>
+                    <th>Grupo</th>
+                    <th>Tipo de Conta</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="conta : ${contas}">
+                    <td th:text="${conta.id}"></td>
+                    <td th:text="${conta.nomeConta}"></td>
+                    <td th:text="${conta.grupo.name}"></td>
+                    <td th:text="${conta.tipoConta}"></td>
+                    <td>
+                        <form th:action="@{/contas/findid}" th:object="${conta}" method="post" class="button-container">
+                            <input type="hidden" name="id" th:value="${conta.id}" />
+                            <button type="submit" class="btn-alterar">Alterar</button>
+                        </form>
+                        <form th:action="@{/contas/id}" method="post" class="button-container">
+                            <input type="hidden" name="id" th:value="${conta.id}"/>
+                            <button type="submit" class="btn-excluir">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

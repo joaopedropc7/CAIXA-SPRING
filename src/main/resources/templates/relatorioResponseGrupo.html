@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Relatorio por grupo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            border: 1px solid #ddd;
+            background-color: #fff;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .total-row {
+            font-weight: bold;
+        }
+
+         .home-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .home-button a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .home-button a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="home-button">
+    <a href="/home">Home</a>
+</div>
+<h1>Relatório por Grupo</h1>
+
+<h2 th:text="${relatorio.idGrupo}"></h2>
+<h2 th:text="${relatorio.nomeGrupo}"></h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>Data</th>
+        <th>Descrição</th>
+        <th>Valor de Entrada</th>
+        <th>Valor de Saída</th>
+        <th>Saldo</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Início da lista de dados do relatório -->
+    <tr th:each="relatorios : ${relatorio.relatorioGrupos}">
+        <td th:text="${#temporals.format(relatorios.data, 'dd-MM-yyyy')}"></td>
+        <td th:text="${relatorios.valorEntrada}"></td>
+        <td th:text="${relatorios.valorSaida}"></td>
+        <td th:text="${relatorios.saldo}"></td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr class="total-row">
+        <td colspan="2">Total:</td>
+        <td th:text="${relatorio.totalEntradas}">300.00</td>
+        <td th:text="${relatorio.totalSaidas}">150.00</td>
+        <td th:text="${relatorio.saldoTotal}">150.00</td>
+    </tr>
+    </tfoot>
+</table>
+</body>
+</html>
